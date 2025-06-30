@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { isAuthenticated } from "@/lib/actions/auth.action";
 import { redirect } from "next/navigation";
-import { headers } from 'next/headers';
 
 const monaSans = Mona_Sans({
   variable: "--font-mona-sans",
@@ -21,22 +20,19 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
-  const headersList = await headers();
-  const pathname = headersList.get('x-next-url') || '';
-  const isPublicRoute = ['/sign-in', '/sign-up'].includes(pathname);
+}>) {
 
   const isUserAuthenticated = await isAuthenticated();
-
-  if (!isUserAuthenticated && !isPublicRoute) {
-    redirect('/sign-in');
-  }
-
+  if(!isUserAuthenticated) redirect('/sign-in');
   return (
     <html lang="en" className="dark">
-      <body className={`${monaSans.className} antialiased pattern`}>
+      <body
+        className={`${monaSans.className} antialiased pattern`}
+      >
+
+      
         <div className='root-layout'>
           <nav>
             <Link href="/" className='flex items-center gap-2'>
@@ -46,7 +42,7 @@ export default async function RootLayout({
           </nav>
           {children}
         </div>
-        <Toaster />
+        <Toaster/>
       </body>
     </html>
   );
