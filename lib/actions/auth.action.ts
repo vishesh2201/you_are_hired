@@ -26,21 +26,18 @@ export async function signUp(params: SignUpParams){
         }
 
     }
-    catch(e: any){
-        console.error(e);
-
-        if(e.code === 'auth/email-already-exists'){
-            return{
-                success: false,
-                message: 'This email is already in use'
-            }
+    catch(e: unknown){
+        if (e instanceof Error) {
+            console.error(e.message);
+        } else {
+            console.error(e);
         }
-         return{
-                success: false,
-                message: 'Failed to create account'
-            }
+        // Optionally, you can check for Firebase error codes if needed
+        return{
+            success: false,
+            message: 'Failed to create account'
+        }
     }
-
 }
 
 export async function signIn(params: SignInParams){
