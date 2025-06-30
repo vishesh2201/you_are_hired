@@ -1,8 +1,11 @@
 import React from 'react'
 import Agent from '@/components/Agent'
+import { requireAuth } from '@/lib/actions/auth.action'
 
+const page = async () => {
+  // This will redirect to /sign-in if not authenticated
+  await requireAuth();
 
-const page = () => {
   return (
     <>
       <h3>

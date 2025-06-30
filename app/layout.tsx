@@ -4,8 +4,6 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import Image from 'next/image'
 import Link from 'next/link'
-import { isAuthenticated } from "@/lib/actions/auth.action";
-import { redirect } from "next/navigation";
 
 const monaSans = Mona_Sans({
   variable: "--font-mona-sans",
@@ -24,8 +22,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const isUserAuthenticated = await isAuthenticated();
-  if(!isUserAuthenticated) redirect('/sign-in');
   return (
     <html lang="en" className="dark">
       <body

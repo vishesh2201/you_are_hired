@@ -2,6 +2,7 @@
 
 import { auth, db } from "@/firebase/admin";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 
 export async function signUp(params: SignUpParams){
@@ -105,5 +106,15 @@ export async function getCurrentUser(): Promise<User | null>{
 export async function isAuthenticated(){
     const user = await getCurrentUser();
 
-    return !!user;{}
+    return !!user;
+}
+
+export async function requireAuth() {
+    const user = await getCurrentUser();
+    
+    if (!user) {
+        redirect('/sign-in');
+    }
+    
+    return user;
 }
