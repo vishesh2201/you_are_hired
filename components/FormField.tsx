@@ -12,12 +12,12 @@ interface FormFieldProps {
 
 const FormField = ({ control, name, label, placeholder, type }: FormFieldProps) => (
   <div className="form-field">
-    <Label htmlFor={name}>{label}</Label>
+    <Label htmlFor={name} className="label">{label}</Label>
     <Controller
       name={name}
       control={control}
       render={({ field }) => (
-        <Input id={name} placeholder={placeholder} type={type} {...field} />
+        <Input id={name} placeholder={placeholder} type={type} className="input" {...field} />
       )}
     />
   </div>

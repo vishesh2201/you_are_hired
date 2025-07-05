@@ -77,16 +77,15 @@ const AuthForm = ({type}: {type: FormType}) => {
   const isSignIn = type === 'sign-in'
 
   return (
-    <div className="card-border lg:min-w-[566px]">
-      <div className="flex flex-col gap-6 card py-14 px-10">
+    <div className="lg:min-w-[566px] max-w-[90%] mx-auto">
+  <div className="flex flex-col gap-6 card px-6 py-6 items-center overflow-auto max-h-[80vh]">
         <div className="flex flex-row gap-2 justify-center">
-          <Image src="./logo.svg" alt="logo" height={32} width={38}/>
-          <h2 className="text-primary-100">You&apos;re Hired</h2>
-          <p className="text-primary-100 mt-2">(or are you?)</p>
+          <Image src="./logo.svg" alt="logo" height={25} width={25}/>
+          <h2 className="text-primary-100">linkedOut</h2>
         </div>
-        <h3>Practice job interviews with AI</h3>
+        <h3 className="text-[#C5C6C7] text-center -mb-4">Practice job interviews with AI</h3>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 mt-4 form">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6 mt-4 form items-center">
           {!isSignIn && (<FormField control={form.control} name="name" label="Name" placeholder="Your name" />)}
           <FormField control={form.control} name="email" label="Email" placeholder="Your email address" type="email" />
           <FormField control={form.control} name="password" label="Password" placeholder="Your password" type="password"/>

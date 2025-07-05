@@ -24,7 +24,7 @@
 
   --font-mona-sans: "Mona Sans", sans-serif;
 
-  --bg-pattern: url("/pattern.png");
+  --bg-pattern: url("/pattern.svg");
 }
 
 :root {
@@ -63,7 +63,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #0B0C10;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -182,7 +182,7 @@
   }
 
   .btn-upload {
-    @apply bg-dark-200 rounded-full min-h-12 px-5 cursor-pointer border border-input  overflow-hidden;
+    @apply bg-dark-200 rounded-full min-h-12 px-5 cursor-pointer border border-input overflow-hidden;
   }
 
   .card-border {
@@ -190,18 +190,32 @@
   }
 
   .card {
-    @apply dark-gradient rounded-2xl min-h-full;
+    @apply dark-gradient rounded-2xl items-center overflow-auto max-h-[80vh];
+    /* Style scrollbar for WebKit browsers */
+    &::-webkit-scrollbar {
+      width: 7px; /* Thin scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+      background: #08090D; /* Matches the darker end of dark-gradient */
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #1F2833; /* Matches the lighter end of dark-gradient */
+      border-radius: var(--radius); /* Matches your theme's radius */
+    }
+    /* Style scrollbar for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #1F2833 #08090D; /* Thumb and track colors */
   }
 
   .form {
     @apply w-full;
 
     .label {
-      @apply !text-light-100 !font-normal;
+      @apply !text-[#D6E0FF] !font-normal text-center py-2 !block !w-full;
     }
 
     .input {
-      @apply !bg-dark-200 !rounded-full !min-h-12 !px-5 placeholder:!text-light-100;
+      @apply !bg-dark-200 !rounded-full !min-h-12 !px-5 placeholder:!text-[#FFFFFF] text-center font-semibold;
     }
 
     .btn {
@@ -241,7 +255,7 @@
     @apply border-gradient p-0.5 rounded-2xl w-full;
 
     .transcript {
-      @apply dark-gradient rounded-2xl  min-h-12 px-5 py-3 flex items-center justify-center;
+      @apply dark-gradient rounded-2xl min-h-12 px-5 py-3 flex items-center justify-center;
 
       p {
         @apply text-lg text-center text-white;
@@ -258,11 +272,11 @@
   }
 
   .auth-layout {
-    @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8;
+    @apply flex items-center justify-center mx-auto max-w-7xl max-sm:px-4 max-sm:py-8;
   }
 
   .root-layout {
-    @apply flex mx-auto max-w-7xl flex-col gap-12 my-12 px-16 max-sm:px-4 max-sm:my-8;
+    @apply flex mx-auto max-w-7xl flex-col gap-12 my-4 px-16 max-sm:px-4 max-sm:my-2;
   }
 
   .card-cta {
@@ -295,7 +309,7 @@
 }
 
 @utility dark-gradient {
-  @apply bg-gradient-to-b from-[#1A1C20] to-[#08090D];
+  @apply bg-gradient-to-b from-[#1A1C20] to-[#08090D] to-75%;
 }
 
 @utility border-gradient {
@@ -303,11 +317,11 @@
 }
 
 @utility pattern {
-  @apply bg-[url('/pattern.png')] bg-top bg-no-repeat;
+  @apply bg-[url('/pattern.svg')] bg-top bg-no-repeat bg-cover bg-center;
 }
 
 @utility blue-gradient-dark {
-  @apply bg-gradient-to-b from-[#171532] to-[#08090D];
+  @apply bg-gradient-to-b from-[#362D8C] to-[#0C0B16];
 }
 
 @utility blue-gradient {

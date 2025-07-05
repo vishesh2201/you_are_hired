@@ -150,10 +150,10 @@ const Agent = ({userName, userId, type, interviewId, questions}: AgentProps) => 
     <div className='call-view'>
         
         <div className='card-interviewer'>
-            <div className='avatar'>
+            <div className='avatar pl-2'>
                 <Image
-                    src="/ai-avatar.png" alt="vapi"
-                    width={65} height={54}
+                    src="/ai-avatar.svg" alt="vapi"
+                    width={50} height={50}
                     className='object-cover'
                     />
                     {isSpeaking && <span className='animate-speak'/>}
@@ -197,8 +197,16 @@ const Agent = ({userName, userId, type, interviewId, questions}: AgentProps) => 
                 
             </button>
         ) : (
-            <button className='btn-disconnect' onClick={handleDisconnect}>
-                End
+
+            <button className='btn-disconnect flex flex-row' onClick={handleDisconnect}>
+                            <Image
+                                src="/call-slash.svg"
+                                alt="call slash"
+                                width={20}
+                                height={20}
+                                className='mr-2'
+            />
+                Leave Interview
             </button>
         )}
     </div>
